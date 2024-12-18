@@ -41,8 +41,8 @@ resource "aws_ecr_repository" "my_app_name" {
 resource "docker_image" "my_app_name" {
   name = "${aws_ecr_repository.my_app_name.repository_url}:latest"
   build {
-    context    = "/home/ubuntu/yogesh/ecr-eks-yogesh/docker/"
-    #context     = "/var/lib/jenkins/workspace/eks-ecr-yeshwanth/eks-ecs/docker/"
+   # context    = "/home/ubuntu/yogesh/ecr-eks-yogesh/docker/"
+    context     = "/var/lib/jenkins/workspace/yogi-ecr-eks/ecr-eks-yogesh/docker/"
     dockerfile = "Dockerfile"
   }
 }

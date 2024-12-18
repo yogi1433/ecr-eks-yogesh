@@ -1,9 +1,9 @@
 resource "aws_s3_bucket" "s3_bucket" {
-  bucket = "terraform-stat-file-lock-eks"  # Replace with your S3 bucket name
+  bucket = "terraform-stat-file-lock-eks"
   acl    = "private"
-
+  
   versioning {
-    enabled = true  # Enable versioning for state file tracking
+    enabled = true
   }
 
   server_side_encryption_configuration {
@@ -13,10 +13,12 @@ resource "aws_s3_bucket" "s3_bucket" {
       }
     }
   }
+
+  force_destroy = true
 }
 
 resource "aws_dynamodb_table" "terraform_lock_table" {
-  name           = "terraform-lock-table"  # DynamoDB table name for state locking
+  name           = "terraform-lock-table"
   billing_mode   = "PAY_PER_REQUEST"
   hash_key       = "LockID"
   attribute {
